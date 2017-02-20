@@ -33,9 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final AuthorizationTask api = new AuthorizationTask(loginEditText.getText().toString(), passwordEditText.getText().toString());
                 api.execute(getWindow().getContext());
-                Intent intent = new Intent(LoginActivity.this, UserPage.class);
-                intent.putExtra("token", response);
-                startActivity(intent);
+
             }
         });
     }
@@ -43,13 +41,17 @@ public class LoginActivity extends AppCompatActivity {
         switch (responseCode){
             case 200 :{int length = token.length() - 1;
                 response = token.substring(1, length);
+                Intent intent = new Intent(LoginActivity.this, UserPage.class);
+                intent.putExtra("token", response);
+                startActivity(intent);
+
             };
             break;
             case 403: ;
                 break;
             case 400: ;
                 break;
-            default:;
+            default:
                 break;
         }
 
