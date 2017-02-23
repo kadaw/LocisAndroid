@@ -24,7 +24,6 @@ public class RegistrationTask extends AsyncTask{
     String email;
     String nickname;
     String password;
-    String token;
     int responseCode;
     public RegistrationTask(String nickname , String email, String password){
         this.nickname = nickname;
@@ -65,10 +64,9 @@ public class RegistrationTask extends AsyncTask{
             OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
             wr.write(jsonString);
             wr.flush();
+            wr.close();
             responseCode = connection.getResponseCode();
-            InputStream is = connection.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            token = convertStreamToString(is);
+
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,8 +75,8 @@ public class RegistrationTask extends AsyncTask{
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-        if (activity != null & token!=null){
-            activity.getToken(token,responseCode);
+        if (activity != null){
+            activity.getToken(responseCode);
 
         }
     }
