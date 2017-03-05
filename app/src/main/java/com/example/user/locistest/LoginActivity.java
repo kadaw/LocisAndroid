@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.user.locistest.Api.AuthorizationTask;
+import com.example.user.locistest.Fragments.UserPageTest;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,7 +44,9 @@ public class LoginActivity extends AppCompatActivity {
                 response = token.substring(1, length);
                 Intent intent = new Intent(LoginActivity.this, UserPage.class);
                 intent.putExtra("token", response);
+
                 startActivity(intent);
+                finish();
 
             };
             break;
