@@ -7,7 +7,7 @@ import com.orm.SugarRecord;
  */
 
 
-public class FriendInList extends SugarRecord {
+public class FriendInList{
    public String name;
     public int userId;
     public boolean room;

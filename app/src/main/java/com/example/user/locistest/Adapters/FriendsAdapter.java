@@ -33,12 +33,12 @@ public class FriendsAdapter extends ArrayAdapter {
         ViewHolder viewHolder;
         if(convertView==null){
             LayoutInflater inflater = friendsActivity.getLayoutInflater();
-            convertView = inflater.inflate(resource, null);
+            convertView = inflater.inflate(R.layout.item_friend, null);
             viewHolder = new ViewHolder();
             viewHolder.nameTextView = (TextView) convertView.findViewById(R.id.tv_friend_name);
 
-            FriendInList selectdFriend = friendInLists.get(position);
-            viewHolder.nameTextView.setText(selectdFriend.name);
+            FriendInList selectedFriend = friendInLists.get(position);
+            viewHolder.nameTextView.setText(selectedFriend.name);
         }
         else{
             viewHolder = (ViewHolder) convertView.getTag();

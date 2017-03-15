@@ -18,6 +18,7 @@ import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchUsersTask extends AsyncTask{
     String token;
@@ -56,15 +57,14 @@ public class SearchUsersTask extends AsyncTask{
             connection.connect();
             String response = CharStreams.toString(new InputStreamReader(connection.getInputStream()));
             System.out.println(response);
+            List<FriendInList> friends= new ArrayList<>();
             JSONArray jArray = new JSONArray(response);
-            FriendInList.deleteAll(FriendInList.class);
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject object = jArray.getJSONObject(i);
                 int id = object.getInt("UserId");
                 String name = object.getString("Nickname");
                 boolean room = object.getBoolean("IsInRoom");
-                FriendInList friends = new FriendInList(name,id, room);
-                friends.save();
+                friends.add(new FriendInList(name,id, room));
             }
         } catch (Exception e) {
             e.printStackTrace();
