@@ -21,14 +21,6 @@
         android:hint="Name of the room"
         android:id="@+id/room_name_et" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_marginTop="107dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="370dp"
-        android:id="@+id/create_room_friends_lv"/>
-
     <Button
         android:text="Create room"
         android:layout_width="wrap_content"
@@ -39,11 +31,23 @@
         style="@style/Widget.AppCompat.Button.Colored" />
 
     <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/room_name_et"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here"
+        android:layout_marginTop="18dp"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:id="@+id/create_room_friends_lv"
+        android:layout_above="@+id/create_room_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

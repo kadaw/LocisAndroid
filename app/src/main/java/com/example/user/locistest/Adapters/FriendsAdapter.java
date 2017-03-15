@@ -2,22 +2,16 @@ package com.example.user.locistest.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.user.locistest.Fragments.FriendsFragment;
 import com.example.user.locistest.FriendInList;
 import com.example.user.locistest.R;
 
 import java.util.List;
-
-import static android.support.v7.appcompat.R.styleable.View;
 
 /**
  * Created by User on 01.03.2017.
@@ -26,13 +20,13 @@ import static android.support.v7.appcompat.R.styleable.View;
 public class FriendsAdapter extends ArrayAdapter {
     Activity friendsActivity;
     int resource;
-    List list;
+    List<FriendInList> friendInLists;
 
-    public FriendsAdapter(Context context, int resource, List objects){
+    public FriendsAdapter(Context context, int resource, List<FriendInList> objects){
         super(context, resource, objects);
-        friendsActivity = (Activity) context;
+        this.friendsActivity = (Activity) context;
         this.resource = resource;
-        list = objects;
+        friendInLists = objects;
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
@@ -43,7 +37,7 @@ public class FriendsAdapter extends ArrayAdapter {
             viewHolder = new ViewHolder();
             viewHolder.nameTextView = (TextView) convertView.findViewById(R.id.tv_friend_name);
 
-            FriendInList selectdFriend = (FriendInList) list.get(position);
+            FriendInList selectdFriend = friendInLists.get(position);
             viewHolder.nameTextView.setText(selectdFriend.name);
         }
         else{

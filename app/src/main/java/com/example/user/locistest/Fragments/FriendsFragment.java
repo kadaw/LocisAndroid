@@ -45,10 +45,10 @@ public class FriendsFragment extends Fragment {
 
     private void initListView(){
         friendsList = new ArrayList<>();
-        friendsList.add(new FriendInList("Тетя Мотя"));
+        /*friendsList.add(new FriendInList("Тетя Мотя"));
         friendsList.add(new FriendInList("PHARAOH"));
         friendsList.add(new FriendInList("ХАСКИ"));
-        friendsList.add(new FriendInList("СЛАВА КПСС"));
+        friendsList.add(new FriendInList("СЛАВА КПСС"));*/
 
         adapter = new FriendsAdapter(getActivity(), R.layout.item_friend, friendsList);
         listView = (ListView) getActivity().findViewById(R.id.lv_my_friends);

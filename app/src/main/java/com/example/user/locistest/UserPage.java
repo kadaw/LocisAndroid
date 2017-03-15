@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class UserPage extends AppCompatActivity {
-
+    String token;
     Button createRoomButton;
 
     @Override
@@ -21,10 +21,13 @@ public class UserPage extends AppCompatActivity {
     }
     private void bindViews(){
         createRoomButton = (Button) findViewById(R.id.up_create_room_btn);
+        final Intent intent = getIntent();
+        token = intent.getStringExtra("token");
         createRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent createRoomIntent = new Intent(getWindow().getContext(), CreateRoomActivity.class);
+                intent.putExtra("token",token);
                 startActivity(createRoomIntent);
             }
         });
