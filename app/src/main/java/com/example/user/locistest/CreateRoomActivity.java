@@ -1,5 +1,6 @@
 package com.example.user.locistest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AbsListView;
@@ -21,6 +22,7 @@ public class CreateRoomActivity extends AppCompatActivity implements SearchView.
 ArrayList<FriendInList> friendsList;
     ListView listViewFriends;
     String response;
+    String token;
     EditText roomLabel;
     Button createRoomBtn;
     SearchView searchView;
@@ -30,6 +32,7 @@ ArrayList<FriendInList> friendsList;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_room);
         friendsListView();
+
         roomLabel = (EditText) findViewById(R.id.room_name_et);
         createRoomBtn = (Button) findViewById(R.id.create_room_button);
         searchView = (SearchView) findViewById(R.id.searchView);
@@ -38,8 +41,11 @@ ArrayList<FriendInList> friendsList;
         createRoomBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = getIntent();
+                token = intent.getStringExtra("token");
+                System.out.println(token);
                 //final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString());
-                final SearchUsersTask api = new SearchUsersTask(response,"kadaw");
+                final SearchUsersTask api = new SearchUsersTask(token,"kadaw");
                 api.execute(getWindow().getContext());
             }
         });
