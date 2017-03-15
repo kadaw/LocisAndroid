@@ -23,6 +23,7 @@ public class SearchUsersTask extends AsyncTask{
     CreateRoomActivity activity;
     String token;
     String searchString;
+    List<FriendInList> friends;
 
     public SearchUsersTask(String token, String searchString) {
         this.token = token;
@@ -60,7 +61,7 @@ public class SearchUsersTask extends AsyncTask{
             String response = CharStreams.toString(new InputStreamReader(connection.getInputStream()));
 
             System.out.println(response);
-            List<FriendInList> friends= new ArrayList<>();
+            friends= new ArrayList<>();
             JSONArray jArray = new JSONArray(response);
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject object = jArray.getJSONObject(i);
@@ -78,5 +79,6 @@ public class SearchUsersTask extends AsyncTask{
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
+        activity.onJSONParsed(friends);
     }
 }

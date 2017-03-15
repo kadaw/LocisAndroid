@@ -16,6 +16,7 @@ import com.example.user.locistest.Api.SearchUsersTask;
 import com.orm.SugarContext;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CreateRoomActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -31,7 +32,6 @@ ArrayList<FriendInList> friendsList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_room);
-        friendsListView();
 
         roomLabel = (EditText) findViewById(R.id.room_name_et);
         createRoomBtn = (Button) findViewById(R.id.create_room_button);
@@ -51,12 +51,9 @@ ArrayList<FriendInList> friendsList;
         });
     }
 
-    private void friendsListView(){
+    private void friendsListView(List<FriendInList> friends){
         friendsList = new ArrayList<>();
-        friendsList.add(new FriendInList("Борян",1,false));
-        friendsList.add(new FriendInList("Антоха",2,false));
-        friendsList.add(new FriendInList("ВиВиВи",3,false));
-        friendsList.add(new FriendInList("Кадаш",4,false));
+        friendsList.addAll(friends);
         FriendsAdapter friendsAdapter = new FriendsAdapter(this,0,friendsList);
         listViewFriends = (ListView) findViewById(R.id.create_room_friends_lv);
         listViewFriends.setAdapter(friendsAdapter);
@@ -85,5 +82,9 @@ ArrayList<FriendInList> friendsList;
     @Override
     public boolean onQueryTextChange(String s) {
         return false;
+    }
+
+    public void onJSONParsed(List<FriendInList> friends) {
+        friendsListView(friends);
     }
 }
