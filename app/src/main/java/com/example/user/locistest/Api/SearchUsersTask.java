@@ -30,24 +30,6 @@ public class SearchUsersTask extends AsyncTask{
         this.searchString = searchString;
     }
 
-    public static String convertStreamToString(InputStream is) throws IOException {
-        InputStreamReader r = new InputStreamReader(is);
-        StringWriter sw = new StringWriter();
-        char[] buffer = new char[1024];
-        try {
-            for (int n; (n = r.read(buffer)) != -1;)
-                sw.write(buffer, 0, n);
-        }
-        finally{
-            try {
-                is.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-        return sw.toString();
-    }
-
     @Override
     protected Object doInBackground(Object[] params) {
         activity = (CreateRoomActivity) params[0];
@@ -59,7 +41,7 @@ public class SearchUsersTask extends AsyncTask{
             connection.setRequestProperty("Authorization","Basic "+ token);
             connection.connect();
             String response = CharStreams.toString(new InputStreamReader(connection.getInputStream()));
-
+            connection.disconnect();
             System.out.println(response);
             friends= new ArrayList<>();
             JSONArray jArray = new JSONArray(response);
@@ -79,6 +61,7 @@ public class SearchUsersTask extends AsyncTask{
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
+        if (friends!=null)
         activity.onJSONParsed(friends);
     }
 }

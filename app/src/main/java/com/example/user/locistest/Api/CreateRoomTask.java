@@ -25,8 +25,9 @@ public class CreateRoomTask extends AsyncTask {
     String token;
     int responseCode;
 
-    public CreateRoomTask(String roomLabel){
+    public CreateRoomTask(String roomLabel, String token){
         this.roomLabel = roomLabel;
+        this.token = token;
     }
 
     public static String convertStreamToString(InputStream is) throws IOException {
@@ -54,11 +55,11 @@ public class CreateRoomTask extends AsyncTask {
             //JSONObject jsonObject = new JSONObject();
             //jsonObject.accumulate("roomName",roomLabel);
             //String jsonString = jsonObject.toString();
-            URL url = new URL("http://locis.lod-misis.ru/room/");
+            URL url = new URL("http://locis.lod-misis.ru/room");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type","application/json");
-            connection.setRequestProperty("Authorization", "Basic 9160E4D0D20D2E488EF299A8D637B4DC");
+            connection.setRequestProperty("Authorization","Basic "+ token);
             connection.connect();
             OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
             wr.write(roomLabel);

@@ -15,6 +15,7 @@ import com.example.user.locistest.Api.CreateRoomTask;
 import com.example.user.locistest.Api.SearchUsersTask;
 import com.orm.SugarContext;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,6 @@ ArrayList<FriendInList> friendsList;
     EditText roomLabel;
     Button createRoomBtn;
     SearchView searchView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +37,15 @@ ArrayList<FriendInList> friendsList;
         createRoomBtn = (Button) findViewById(R.id.create_room_button);
         searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(this);
+        Intent intent = getIntent();
+        token = intent.getStringExtra("token");
 
         createRoomBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                token = intent.getStringExtra("token");
                 System.out.println(token);
-                //final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString());
-                final SearchUsersTask api = new SearchUsersTask(token,"kadaw");
+                final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(),token);
+                //final SearchUsersTask api = new SearchUsersTask(token, "m");
                 api.execute(getWindow().getContext());
             }
         });
@@ -68,6 +68,7 @@ ArrayList<FriendInList> friendsList;
 
             }
         });
+
     }
 
     public void getToken(String token, int responseCode) {
@@ -81,6 +82,11 @@ ArrayList<FriendInList> friendsList;
 
     @Override
     public boolean onQueryTextChange(String s) {
+            System.out.println(s);
+            final SearchUsersTask api = new SearchUsersTask(token, s);
+            api.execute(getWindow().getContext());
+
+
         return false;
     }
 
