@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.user.locistest.Fragments.ProfilePageFragment">
+
+    <TextView
+        android:text="Привет, %username%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:text="Создай комнату и приглашай друзей!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:id="@+id/textView5" />
+
+    <Button
+        android:text="Create room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/up_create_room_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#004D40"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/tv_border"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
