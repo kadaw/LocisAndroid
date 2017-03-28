@@ -45,7 +45,6 @@ ArrayList<FriendInList> friendsList;
             public void onClick(View v) {
                 System.out.println(token);
                 final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(),token);
-                //final SearchUsersTask api = new SearchUsersTask(token, "m");
                 api.execute(getWindow().getContext());
             }
         });
