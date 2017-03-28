@@ -13,9 +13,7 @@ import android.widget.ListView;
 import com.example.user.locistest.Adapters.FriendsAdapter;
 import com.example.user.locistest.Api.CreateRoomTask;
 import com.example.user.locistest.Api.SearchUsersTask;
-import com.orm.SugarContext;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,6 @@ public class CreateRoomActivity extends AppCompatActivity implements SearchView.
 
 ArrayList<FriendInList> friendsList;
     ListView listViewFriends;
-    String response;
     String token;
     EditText roomLabel;
     Button createRoomBtn;
