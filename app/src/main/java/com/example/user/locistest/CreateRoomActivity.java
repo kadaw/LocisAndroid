@@ -13,9 +13,7 @@ import android.widget.ListView;
 import com.example.user.locistest.Adapters.FriendsAdapter;
 import com.example.user.locistest.Api.CreateRoomTask;
 import com.example.user.locistest.Api.SearchUsersTask;
-import com.orm.SugarContext;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,6 @@ public class CreateRoomActivity extends AppCompatActivity implements SearchView.
 
 ArrayList<FriendInList> friendsList;
     ListView listViewFriends;
-    String response;
     String token;
     EditText roomLabel;
     Button createRoomBtn;
@@ -45,7 +42,6 @@ ArrayList<FriendInList> friendsList;
             public void onClick(View v) {
                 System.out.println(token);
                 final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(),token);
-                //final SearchUsersTask api = new SearchUsersTask(token, "m");
                 api.execute(getWindow().getContext());
             }
         });
@@ -54,7 +50,7 @@ ArrayList<FriendInList> friendsList;
     private void friendsListView(List<FriendInList> friends){
         friendsList = new ArrayList<>();
         friendsList.addAll(friends);
-        FriendsAdapter friendsAdapter = new FriendsAdapter(this,0,friendsList);
+        FriendsAdapter friendsAdapter = new FriendsAdapter(this,0,friendsList,token);
         listViewFriends = (ListView) findViewById(R.id.create_room_friends_lv);
         listViewFriends.setAdapter(friendsAdapter);
         listViewFriends.setOnScrollListener(new AbsListView.OnScrollListener() {

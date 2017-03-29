@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.user.locistest.Adapters.RoomsAdapter;
 
@@ -24,7 +26,10 @@ public class UserPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_user_page_room);
-    initListView();
+        final Intent intent = getIntent();
+        token = intent.getStringExtra("token");
+
+        initListView();
     }
     protected void onResume() {
         super.onResume();
@@ -32,8 +37,7 @@ public class UserPage extends AppCompatActivity {
     }
     private void bindViews(){
         createRoomButton = (Button) findViewById(R.id.button2);
-        final Intent intent = getIntent();
-        token = intent.getStringExtra("token");
+
         System.out.println(token);
         createRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +47,16 @@ public class UserPage extends AppCompatActivity {
                 startActivity(createRoomIntent);
             }
         });
+        listView = (ListView) findViewById(R.id.lv_rooms);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent(UserPage.this, CreateRoomActivity.class);
+                intent.putExtra("token", token);
+                startActivity(intent);
+            }
+        });
+
     }
     private void initListView(){
         roomsList = new ArrayList<>();

@@ -63,5 +63,6 @@ public class SearchUsersTask extends AsyncTask{
         super.onPostExecute(o);
         if (friends!=null)
         activity.onJSONParsed(friends);
+        else activity.onJSONParsed(friends=new ArrayList<FriendInList>());
     }
 }

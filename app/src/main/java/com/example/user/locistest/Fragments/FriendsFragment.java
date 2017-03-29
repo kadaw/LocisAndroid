@@ -50,7 +50,7 @@ public class FriendsFragment extends Fragment {
         friendsList.add(new FriendInList("ХАСКИ"));
         friendsList.add(new FriendInList("СЛАВА КПСС"));*/
 
-        adapter = new FriendsAdapter(getActivity(), R.layout.item_friend, friendsList);
+        adapter = new FriendsAdapter(getActivity(), R.layout.item_friend, friendsList,"token");
         listView = (ListView) getActivity().findViewById(R.id.lv_my_friends);
         listView.setAdapter(adapter);
       //  listView.setOnItemClickListener(this);
