@@ -50,7 +50,7 @@ ArrayList<FriendInList> friendsList;
     private void friendsListView(List<FriendInList> friends){
         friendsList = new ArrayList<>();
         friendsList.addAll(friends);
-        FriendsAdapter friendsAdapter = new FriendsAdapter(this,0,friendsList);
+        FriendsAdapter friendsAdapter = new FriendsAdapter(this,0,friendsList,token);
         listViewFriends = (ListView) findViewById(R.id.create_room_friends_lv);
         listViewFriends.setAdapter(friendsAdapter);
         listViewFriends.setOnScrollListener(new AbsListView.OnScrollListener() {
