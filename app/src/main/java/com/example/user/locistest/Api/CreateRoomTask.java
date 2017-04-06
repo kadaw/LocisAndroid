@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.user.locistest.CreateRoomActivity;
+import com.example.user.locistest.UserPage;
 
 import org.json.JSONObject;
 
@@ -20,7 +21,7 @@ import java.net.URL;
  */
 
 public class CreateRoomTask extends AsyncTask {
-    CreateRoomActivity activity;
+    UserPage activity;
     String roomLabel;
     String token;
     int responseCode;
@@ -50,8 +51,11 @@ public class CreateRoomTask extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] params) {
-        activity = (CreateRoomActivity) params[0];
+        activity = (UserPage) params[0];
         try{
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("roomName",roomLabel);
+            String jsonString = jsonObject.toString();
             URL url = new URL("http://locis.lod-misis.ru/room");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -59,13 +63,15 @@ public class CreateRoomTask extends AsyncTask {
             connection.setRequestProperty("Authorization","Basic "+ token);
             connection.connect();
             OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
-            wr.write(roomLabel);
+            wr.write(jsonString);
             wr.flush();
             responseCode = connection.getResponseCode();
             Log.d("kek", "Response code: "+responseCode);
             InputStream is = connection.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             token = convertStreamToString(is);
+            is.close();
+            isr.close();
         }catch (Exception e) {
             e.printStackTrace();
         }

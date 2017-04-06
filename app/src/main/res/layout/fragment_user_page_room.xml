@@ -64,7 +64,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:hint="Введите название"
-        android:id="@+id/editText3"
+        android:id="@+id/room_name_up_et"
         android:layout_above="@+id/button2"
         android:layout_centerHorizontal="true" />
 

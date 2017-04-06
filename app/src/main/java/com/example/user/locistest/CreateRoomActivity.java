@@ -41,7 +41,7 @@ ArrayList<FriendInList> friendsList;
             @Override
             public void onClick(View v) {
                 System.out.println(token);
-                final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(),token);
+                final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(), token);
                 api.execute(getWindow().getContext());
             }
         });

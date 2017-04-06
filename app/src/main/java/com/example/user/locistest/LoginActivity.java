@@ -40,7 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void getToken(String token,int responseCode){
         switch (responseCode){
-            case 200 :{int length = token.length() - 1;
+            case 200 :{
+                int length = token.length() - 1;
                 response = token.substring(1, length);
                 Intent intent = new Intent(LoginActivity.this, UserPage.class);
                 intent.putExtra("token", response);
