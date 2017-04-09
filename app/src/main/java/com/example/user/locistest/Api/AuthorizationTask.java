@@ -2,6 +2,7 @@ package com.example.user.locistest.Api;
 
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.util.Log;
 
 import com.example.user.locistest.LoginActivity;
 
@@ -63,6 +64,7 @@ public class AuthorizationTask extends AsyncTask {
             wr.write(jsonString);
             wr.flush();
             responseCode = connection.getResponseCode();
+            Log.d("kek", "Response code: "+responseCode);
             InputStream is = connection.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             token = convertStreamToString(is);

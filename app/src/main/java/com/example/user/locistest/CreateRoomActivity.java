@@ -41,8 +41,8 @@ ArrayList<FriendInList> friendsList;
             @Override
             public void onClick(View v) {
                 System.out.println(token);
-                final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(), token);
-                api.execute(getWindow().getContext());
+               // final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(), token);
+             //   api.execute(getWindow().getContext());
             }
         });
     }
@@ -67,9 +67,7 @@ ArrayList<FriendInList> friendsList;
 
     }
 
-    public void getToken(String token, int responseCode) {
 
-    }
 
     @Override
     public boolean onQueryTextSubmit(String s) {

@@ -56,7 +56,7 @@ public class CreateRoomTask extends AsyncTask {
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("roomName",roomLabel);
             String jsonString = jsonObject.toString();
-            URL url = new URL("http://locis.lod-misis.ru/room");
+            URL url = new URL("http://locis.lod-misis.ru/room/");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type","application/json");

@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.user.locistest.Adapters.RoomsAdapter;
+import com.example.user.locistest.Api.AcceptInvitationTask;
 import com.example.user.locistest.Api.CreateRoomTask;
 
 import java.util.ArrayList;
@@ -47,10 +48,11 @@ public class UserPage extends AppCompatActivity {
 
 
         initListView();
+        bindViews();
+
     }
     protected void onResume() {
         super.onResume();
-        bindViews();
     }
     private void bindViews(){
         createRoomButton = (Button) findViewById(R.id.button2);
@@ -64,8 +66,10 @@ public class UserPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println(token);
-                final CreateRoomTask api = new CreateRoomTask(createRoomET.getText().toString(), token);
+                final AcceptInvitationTask api = new AcceptInvitationTask(token);
                 api.execute(getWindow().getContext());
+              //  Intent intent = new Intent(UserPage.this, CreateRoomActivity.class);
+               // startActivity(intent);
 
 
 
@@ -80,18 +84,21 @@ public class UserPage extends AppCompatActivity {
                 Intent intent = new Intent(UserPage.this, CreateRoomActivity.class);
                 intent.putExtra("token", token);
                 startActivity(intent);
+
             }
         });
 
     }
 
     public void createNotification(){
+        String roomNameget = getIntent().getStringExtra("RoomName");
+
         Intent notifIntent = new Intent();
         PendingIntent pIntent = PendingIntent.getActivity(UserPage.this,0,notifIntent,0);
         Notification noti = new Notification.Builder(UserPage.this)
                 .setTicker("Вас пригласили в комнату")
                 .setContentTitle("Вас пригласили в комнату")
-                .setContentText("%username% в %roomname%")
+                .setContentText("%username% в " + roomNameget)
                 .setSmallIcon(R.drawable.ic_menu_gallery)
                 .addAction(R.drawable.ic_menu_manage,"Принять", pIntent)
                 .addAction(R.drawable.ic_menu_manage,"Отклонить", pIntent)
@@ -125,7 +132,6 @@ public class UserPage extends AppCompatActivity {
                 break;
             case 500:
               ;
-
                 break;
             default:
                 break;
