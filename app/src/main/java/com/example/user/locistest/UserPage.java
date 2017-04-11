@@ -15,6 +15,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,11 +23,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.user.locistest.Adapters.FriendsAdapter;
 import com.example.user.locistest.Adapters.RoomsAdapter;
 import com.example.user.locistest.Api.AcceptInvitationTask;
 import com.example.user.locistest.Api.CreateRoomTask;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserPage extends AppCompatActivity {
     String token;
@@ -47,7 +50,6 @@ public class UserPage extends AppCompatActivity {
         token = intent.getStringExtra("token");
 
 
-        initListView();
         bindViews();
 
     }
@@ -77,16 +79,12 @@ public class UserPage extends AppCompatActivity {
 
             }
         });
-        listView = (ListView) findViewById(R.id.lv_rooms);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(UserPage.this, CreateRoomActivity.class);
-                intent.putExtra("token", token);
-                startActivity(intent);
 
-            }
-        });
+
+
+    }
+
+    private void roomsListView(){
 
     }
 
@@ -138,23 +136,37 @@ public class UserPage extends AppCompatActivity {
         }
     }
 
-    private void initListView(){
+    private void initListView(List<RoomInList> rooms){
         roomsList = new ArrayList<>();
-        roomsList.add(new RoomInList("Вписон в М2", "25"));
-        roomsList.add(new RoomInList("Вписон в М2", "35"));
-        roomsList.add(new RoomInList("Вписон в М2", "35"));
-        roomsList.add(new RoomInList("Вписон в М2", "35"));
-        roomsList.add(new RoomInList("Вписон в М2", "35"));
-        roomsList.add(new RoomInList("Вписон в М2", "35"));
-        roomsList.add(new RoomInList("Вписон в М2", "35"));
+        roomsList.add(new RoomInList("Вписон в М2", 25));
+        roomsList.add(new RoomInList("Вписон в М2", 35));
+        roomsList.add(new RoomInList("Вписон в М2", 35));
+        roomsList.add(new RoomInList("Вписон в М2", 35));
 
-        adapter = new RoomsAdapter(this, R.layout.item_room, roomsList);
 
+        roomsList.addAll(rooms);
+        RoomsAdapter roomsAdapter = new RoomsAdapter(this,0,roomsList,token);
         listView = (ListView) findViewById(R.id.lv_rooms);
-        listView.setAdapter(adapter);
+        listView.setAdapter(roomsAdapter);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+    public void onJSONParsed(List<RoomInList> rooms) {
+        initListView(rooms);
+    }
+
 }

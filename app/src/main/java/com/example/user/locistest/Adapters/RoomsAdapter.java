@@ -23,10 +23,13 @@ public class RoomsAdapter extends ArrayAdapter{
     Activity upActivity;
     int resource;
     List<RoomInList> roomsInList;
-    public RoomsAdapter(Context context, int resource, List<RoomInList> objects){
+    String token;
+
+    public RoomsAdapter(Context context, int resource, List<RoomInList> objects, String token){
         super(context, resource, objects);
         this.upActivity = (Activity) context;
         this.resource = resource;
+        this.token = token;
         roomsInList = objects;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
