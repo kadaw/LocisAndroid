@@ -7,42 +7,35 @@ import android.widget.AbsListView;
 import android.widget.SearchView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.user.locistest.Adapters.FriendsAdapter;
-import com.example.user.locistest.Api.CreateRoomTask;
 import com.example.user.locistest.Api.SearchUsersTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateRoomActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class SearchUsersActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
 ArrayList<FriendInList> friendsList;
     ListView listViewFriends;
     String token;
-    EditText roomLabel;
-    Button createRoomBtn;
+    Button backButton;
     SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_room);
-
-        roomLabel = (EditText) findViewById(R.id.room_name_et);
-        createRoomBtn = (Button) findViewById(R.id.create_room_button);
+        setContentView(R.layout.activity_search_users);
+        backButton = (Button) findViewById(R.id.create_room_button);
         searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(this);
         Intent intent = getIntent();
         token = intent.getStringExtra("token");
 
-        createRoomBtn.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(token);
-               // final CreateRoomTask api = new CreateRoomTask(roomLabel.getText().toString(), token);
-             //   api.execute(getWindow().getContext());
+            finish();
             }
         });
     }

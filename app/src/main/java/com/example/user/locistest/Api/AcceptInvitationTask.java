@@ -4,19 +4,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.test.espresso.core.deps.guava.io.CharStreams;
 
-import com.example.user.locistest.CreateRoomActivity;
 import com.example.user.locistest.UserPage;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by User on 10.04.2017.

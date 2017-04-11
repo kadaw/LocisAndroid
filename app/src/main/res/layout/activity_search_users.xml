@@ -9,20 +9,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/gradient_main"
-    tools:context="com.example.user.locistest.CreateRoomActivity">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:hint="Name of the room"
-        android:id="@+id/room_name_et" />
+    tools:context="com.example.user.locistest.SearchUsersActivity">
 
     <Button
-        android:text="Create room"
+        android:text="Готово"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -34,7 +24,6 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/room_name_et"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:iconifiedByDefault="false"

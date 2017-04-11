@@ -3,29 +3,19 @@ package com.example.user.locistest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.user.locistest.Adapters.FriendsAdapter;
 import com.example.user.locistest.Adapters.RoomsAdapter;
-import com.example.user.locistest.Api.AcceptInvitationTask;
 import com.example.user.locistest.Api.CreateRoomTask;
 
 import java.util.ArrayList;
@@ -68,9 +58,9 @@ public class UserPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println(token);
-                final AcceptInvitationTask api = new AcceptInvitationTask(token);
+                final CreateRoomTask api = new CreateRoomTask(createRoomET.getText().toString(),token);
                 api.execute(getWindow().getContext());
-              //  Intent intent = new Intent(UserPage.this, CreateRoomActivity.class);
+              //  Intent intent = new Intent(UserPage.this, SearchUsersActivity.class);
                // startActivity(intent);
 
 
@@ -113,7 +103,7 @@ public class UserPage extends AppCompatActivity {
             case 200: {
                 int length = token.length() - 1;
                 response = token.substring(1, length);
-                Intent intent = new Intent(UserPage.this, CreateRoomActivity.class);
+                Intent intent = new Intent(UserPage.this, SearchUsersActivity.class);
                 intent.putExtra("token", response);
 
                 startActivity(intent);

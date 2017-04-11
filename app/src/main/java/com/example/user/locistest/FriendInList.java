@@ -10,12 +10,10 @@ import com.orm.SugarRecord;
 public class FriendInList{
    public String name;
     public int userId;
-    public boolean room;
 
-    public FriendInList(String name, int userId, boolean room) {
+    public FriendInList(String name, int userId) {
         this.name = name;
         this.userId = userId;
-        this.room = room;
     }
     public FriendInList(){}
 }

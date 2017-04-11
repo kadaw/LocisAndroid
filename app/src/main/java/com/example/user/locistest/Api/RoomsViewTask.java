@@ -2,8 +2,6 @@ package com.example.user.locistest.Api;
 
 import android.support.test.espresso.core.deps.guava.io.CharStreams;
 
-import com.example.user.locistest.CreateRoomActivity;
-import com.example.user.locistest.FriendInList;
 import com.example.user.locistest.RoomInList;
 import com.example.user.locistest.UserPage;
 

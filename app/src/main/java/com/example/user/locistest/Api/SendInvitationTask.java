@@ -2,16 +2,13 @@ package com.example.user.locistest.Api;
 
 import android.os.AsyncTask;
 
-import com.example.user.locistest.CreateRoomActivity;
-import com.example.user.locistest.LoginActivity;
+import com.example.user.locistest.SearchUsersActivity;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -21,7 +18,7 @@ import java.net.URL;
  */
 
 public class SendInvitationTask extends AsyncTask {
-    CreateRoomActivity activity;
+    SearchUsersActivity activity;
     int userId;
     int roomId;
     String token;
@@ -34,7 +31,7 @@ public class SendInvitationTask extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] params) {
-        activity = (CreateRoomActivity) params[0];
+        activity = (SearchUsersActivity) params[0];
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("RoomId", roomId);
