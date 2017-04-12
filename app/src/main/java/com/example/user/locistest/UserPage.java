@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +23,7 @@ import com.example.user.locistest.Api.RoomsViewTask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserPage extends AppCompatActivity {
+public class UserPage extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
     String token;
     Button createRoomButton;
     Button invitesButton;
@@ -151,19 +152,24 @@ public class UserPage extends AppCompatActivity {
         RoomsAdapter roomsAdapter = new RoomsAdapter(this,0,roomsList,token);
         listView = (ListView) findViewById(R.id.lv_rooms);
         listView.setAdapter(roomsAdapter);
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
+        listView.setOnItemClickListener(this);
 
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-            }
-        });
 
     }
+
+    public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
+                            long id) {
+        Intent openRoomIntent = new Intent(this, OpenedRoomActivity.class);
+        roomsList.get(position);
+
+        openRoomIntent.putExtra("roomName", roomsList.get(position).name);
+        openRoomIntent.putExtra("roomId", roomsList.get(position).roomId);
+
+        startActivity(openRoomIntent);
+
+
+    }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -172,4 +178,8 @@ public class UserPage extends AppCompatActivity {
         initListView(rooms);
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

@@ -44,7 +44,8 @@ public class RoomsViewTask extends AsyncTask {
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject object = jArray.getJSONObject(i);
                 String roomName = object.getString("RoomName");
-                rooms.add(new RoomInList(roomName));
+                int roomId = object.getInt("RoomId");
+                rooms.add(new RoomInList(roomName, roomId));
             }
         } catch (Exception e) {
             e.printStackTrace();

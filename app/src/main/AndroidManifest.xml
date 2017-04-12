@@ -29,7 +29,8 @@
             android:name=".Fragments.UserPageTest"
             android:label="@string/title_activity_user_page_test"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".InvitesPage"></activity>
+        <activity android:name=".InvitesPage" />
+        <activity android:name=".OpenedRoomActivity"></activity>
     </application>
 
 </manifest>
