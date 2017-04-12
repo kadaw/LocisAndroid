@@ -68,6 +68,7 @@ public class AuthorizationTask extends AsyncTask {
             InputStream is = connection.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             token = convertStreamToString(is);
+            Log.d("kek", "Token: "+token);
             is.close();
             isr.close();
         }catch (Exception e) {

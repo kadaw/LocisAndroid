@@ -20,14 +20,14 @@ import static android.R.id.list;
  */
 
 public class RoomsAdapter extends ArrayAdapter{
-    Activity upActivity;
+    Activity friendsActivity;
     int resource;
     List<RoomInList> roomsInList;
     String token;
 
     public RoomsAdapter(Context context, int resource, List<RoomInList> objects, String token){
         super(context, resource, objects);
-        this.upActivity = (Activity) context;
+        this.friendsActivity = (Activity) context;
         this.resource = resource;
         this.token = token;
         roomsInList = objects;
@@ -35,24 +35,19 @@ public class RoomsAdapter extends ArrayAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            LayoutInflater inflater = upActivity.getLayoutInflater();
-            convertView = inflater.inflate(resource, null);
+            LayoutInflater inflater = friendsActivity.getLayoutInflater();
+            convertView = inflater.inflate(R.layout.item_room, null);
             viewHolder = new ViewHolder();
 
             viewHolder.nameTVUserRoom = (TextView) convertView.findViewById(R.id.tv_room_name);
-            viewHolder.countOfUsersTVUserRoom = (TextView) convertView.findViewById(R.id.tv_count_of_users);
-
-            RoomInList selectedRoom = (RoomInList) roomsInList.get(position);
-
+            RoomInList selectedRoom = roomsInList.get(position);
             viewHolder.nameTVUserRoom.setText(selectedRoom.name);
-            viewHolder.countOfUsersTVUserRoom.setText(selectedRoom.usersCount);
         }
         return convertView;
 
     }
     class ViewHolder{
        TextView nameTVUserRoom;
-        TextView countOfUsersTVUserRoom;
 
     }
 

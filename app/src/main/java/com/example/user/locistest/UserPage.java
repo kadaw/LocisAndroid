@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.example.user.locistest.Adapters.RoomsAdapter;
 import com.example.user.locistest.Api.CreateRoomTask;
+import com.example.user.locistest.Api.RoomsViewTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.List;
 public class UserPage extends AppCompatActivity {
     String token;
     Button createRoomButton;
+    Button invitesButton;
     ArrayList<RoomInList>  roomsList;
     ArrayAdapter adapter;
     ListView listView;
@@ -38,6 +40,8 @@ public class UserPage extends AppCompatActivity {
         setContentView(R.layout.fragment_user_page_room);
         final Intent intent = getIntent();
         token = intent.getStringExtra("token");
+        final RoomsViewTask api = new RoomsViewTask(token);
+        api.execute(getWindow().getContext());
 
 
         bindViews();
@@ -49,7 +53,9 @@ public class UserPage extends AppCompatActivity {
     private void bindViews(){
         createRoomButton = (Button) findViewById(R.id.button2);
         createRoomET = (EditText) findViewById(R.id.room_name_up_et);
-
+        invitesButton = (Button) findViewById(R.id.invites_btn);
+        final RoomsViewTask api = new RoomsViewTask(token);
+        api.execute(getWindow().getContext());
 
 
 
@@ -60,12 +66,21 @@ public class UserPage extends AppCompatActivity {
                 System.out.println(token);
                 final CreateRoomTask api = new CreateRoomTask(createRoomET.getText().toString(),token);
                 api.execute(getWindow().getContext());
-              //  Intent intent = new Intent(UserPage.this, SearchUsersActivity.class);
-               // startActivity(intent);
+                Intent intent = new Intent(UserPage.this, SearchUsersActivity.class);
+                startActivity(intent);
 
 
 
-                createNotification();
+                //createNotification();
+
+            }
+        });
+        invitesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent invitePageIntent = new Intent(UserPage.this, InvitesPage.class);
+                invitePageIntent.putExtra("token_invite", token);
+                startActivity(invitePageIntent);
 
             }
         });
@@ -74,9 +89,7 @@ public class UserPage extends AppCompatActivity {
 
     }
 
-    private void roomsListView(){
 
-    }
 
     public void createNotification(){
         String roomNameget = getIntent().getStringExtra("RoomName");
@@ -88,8 +101,8 @@ public class UserPage extends AppCompatActivity {
                 .setContentTitle("Вас пригласили в комнату")
                 .setContentText("%username% в " + roomNameget)
                 .setSmallIcon(R.drawable.ic_menu_gallery)
-                .addAction(R.drawable.ic_menu_manage,"Принять", pIntent)
-                .addAction(R.drawable.ic_menu_manage,"Отклонить", pIntent)
+                /*.addAction(R.drawable.ic_menu_manage,"Принять", pIntent)
+                .addAction(R.drawable.ic_menu_manage,"Отклонить", pIntent)*/
                 .setContentIntent(pIntent).getNotification();
 
         noti.flags = Notification.FLAG_AUTO_CANCEL;
@@ -127,13 +140,13 @@ public class UserPage extends AppCompatActivity {
     }
 
     private void initListView(List<RoomInList> rooms){
+
+//        roomsList.add(new RoomInList("Вписон в М2"));
+//        roomsList.add(new RoomInList("Вписон в М2"));
+//        roomsList.add(new RoomInList("Вписон в М2"));
+//        roomsList.add(new RoomInList("Вписон в М2"));
+
         roomsList = new ArrayList<>();
-        roomsList.add(new RoomInList("Вписон в М2", 25));
-        roomsList.add(new RoomInList("Вписон в М2", 35));
-        roomsList.add(new RoomInList("Вписон в М2", 35));
-        roomsList.add(new RoomInList("Вписон в М2", 35));
-
-
         roomsList.addAll(rooms);
         RoomsAdapter roomsAdapter = new RoomsAdapter(this,0,roomsList,token);
         listView = (ListView) findViewById(R.id.lv_rooms);

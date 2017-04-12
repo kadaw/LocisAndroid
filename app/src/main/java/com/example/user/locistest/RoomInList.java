@@ -6,11 +6,9 @@ package com.example.user.locistest;
 
 public class RoomInList {
     public String name;
-    public int usersCount;
 
-    public RoomInList(String name, int usersCount){
+    public RoomInList(String name){
         this.name = name;
-        this.usersCount = usersCount;
     }
 
 }

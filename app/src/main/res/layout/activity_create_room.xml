@@ -11,6 +11,7 @@
     android:background="@drawable/gradient_main"
     tools:context="com.example.user.locistest.SearchUsersActivity">
 
+
     <Button
         android:text="Готово"
         android:layout_width="wrap_content"

@@ -20,18 +20,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="kadaw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="89dp"
-        android:layout_marginStart="89dp"
-        android:id="@+id/nickname_tv"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3" />
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -67,5 +55,26 @@
         android:id="@+id/room_name_up_et"
         android:layout_above="@+id/button2"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="kadaw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nickname_tv"
+        android:textSize="25dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_above="@+id/lv_rooms"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="invites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/invites_btn"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignRight="@+id/nickname_tv"
+        android:layout_alignEnd="@+id/nickname_tv" />
 
 </RelativeLayout>

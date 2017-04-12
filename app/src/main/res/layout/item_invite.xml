@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sender_name_invite_tv"
+        android:layout_below="@+id/room_name_invite_tv"
+        android:layout_alignLeft="@+id/room_name_invite_tv"
+        android:layout_alignStart="@+id/room_name_invite_tv" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/room_name_invite_tv"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/accept_invite_btn"
+        android:layout_toEndOf="@+id/accept_invite_btn" />
+
+    <Button
+        android:text="accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accept_invite_btn"
+        android:layout_alignBaseline="@+id/decline_invite_btn"
+        android:layout_alignBottom="@+id/decline_invite_btn"
+        android:layout_toLeftOf="@+id/decline_invite_btn"
+        android:layout_toStartOf="@+id/decline_invite_btn" />
+
+    <Button
+        android:text="decline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/decline_invite_btn"
+        android:layout_marginRight="91dp"
+        android:layout_marginEnd="91dp"
+        android:layout_below="@+id/sender_name_invite_tv"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="from:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sender_invite_tv"
+        android:layout_below="@+id/room_invite_tv"
+        android:layout_alignLeft="@+id/accept_invite_btn"
+        android:layout_alignStart="@+id/accept_invite_btn"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp" />
+
+    <TextView
+        android:text="room:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/room_invite_tv"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/sender_invite_tv"
+        android:layout_alignStart="@+id/sender_invite_tv" />
+</RelativeLayout>

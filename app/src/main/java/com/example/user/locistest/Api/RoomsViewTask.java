@@ -1,5 +1,6 @@
 package com.example.user.locistest.Api;
 
+import android.os.AsyncTask;
 import android.support.test.espresso.core.deps.guava.io.CharStreams;
 
 import com.example.user.locistest.RoomInList;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by User on 10.04.2017.
  */
 
-public class RoomsViewTask {
+public class RoomsViewTask extends AsyncTask {
     UserPage activity;
     String token;
     List<RoomInList> rooms;
@@ -38,13 +39,12 @@ public class RoomsViewTask {
             connection.connect();
             String response = CharStreams.toString(new InputStreamReader(connection.getInputStream()));
             connection.disconnect();
-            System.out.println(response);
             rooms= new ArrayList<>();
             JSONArray jArray = new JSONArray(response);
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject object = jArray.getJSONObject(i);
                 String roomName = object.getString("RoomName");
-                rooms.add(new RoomInList(roomName, i));
+                rooms.add(new RoomInList(roomName));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,6 +53,7 @@ public class RoomsViewTask {
     }
 
     protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
         if (rooms!=null)
             activity.onJSONParsed(rooms);
         else activity.onJSONParsed(rooms=new ArrayList<RoomInList>());

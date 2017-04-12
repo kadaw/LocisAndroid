@@ -16,20 +16,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".UserPage" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".SearchUsersActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.SEARCH" />
-        </intent-filter>
+        <activity android:name=".SearchUsersActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Fragments.UserPageTest"
             android:label="@string/title_activity_user_page_test"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".InvitesPage"></activity>
     </application>
 
 </manifest>

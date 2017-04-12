@@ -1,7 +1,6 @@
 package com.example.user.locistest.Api;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.user.locistest.UserPage;
 

@@ -7,6 +7,7 @@ import android.widget.AbsListView;
 import android.widget.SearchView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.user.locistest.Adapters.FriendsAdapter;
@@ -25,7 +26,7 @@ ArrayList<FriendInList> friendsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_users);
+        setContentView(R.layout.activity_create_room);
         backButton = (Button) findViewById(R.id.create_room_button);
         searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(this);
@@ -35,7 +36,7 @@ ArrayList<FriendInList> friendsList;
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            finish();
+                finish();
             }
         });
     }
